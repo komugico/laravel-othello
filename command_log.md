@@ -32,8 +32,24 @@ php artisan migrate
 
 ```
 cd src
-cd laravel_othello
+cd laravel-othello
 cd resources
 cd react
 npm install
+```
+
+## オセロコントローラを作る
+
+```
+cd src
+cd laravel-othello
+php artisan make:controller OthelloController
+```
+
+## Reactのファイルをコンパイルする
+
+```
+cd src
+cd laravel-othello
+python update_react.py
 ```
