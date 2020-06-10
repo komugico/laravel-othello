@@ -27,3 +27,13 @@ DB_PASSWORD=[パスワード]
 php artisan make:auth
 php artisan migrate
 ```
+
+## React関係ファイルのインストール
+
+```
+cd src
+cd laravel_othello
+cd resources
+cd react
+npm install
+```

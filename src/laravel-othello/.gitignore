@@ -1,6 +1,9 @@
 /node_modules
 /public/hot
 /public/storage
+/public/js/react
+/resources/react/node_modules
+/resources/react/package-lock.json
 /storage/*.key
 /vendor
 /.idea
