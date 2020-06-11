@@ -6,7 +6,11 @@
 @endsection
 
 @section('contents')
-    <div id="othello"></div>
+    <div id="index"></div>
+
+    <div id="player_id" type="hidden" style="display: none">{{$player->id}}</div>
+    <div id="player_name" type="hidden" style="display: none">{{$player->name}}</div>
+    <div id="player_rating" type="hidden" style="display: none">{{$player->rating}}</div>
 @endsection
 
 @section('scripts')

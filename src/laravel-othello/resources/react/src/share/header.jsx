@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button, ButtonToolbar, ButtonGroup, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
+import { getValueById } from './finder.jsx';
+
 class Header extends React.Component {
     constructor() {
         super();
@@ -73,11 +75,7 @@ class Header extends React.Component {
     }
 }
 
-
-let username = null;
-if (document.getElementById("username") != null) {
-    username = document.getElementById("username").textContent;
-}
+let username = getValueById("username");
 
 ReactDOM.render(
     <Header
