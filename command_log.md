@@ -53,3 +53,26 @@ cd src
 cd laravel-othello
 python update_react.py
 ```
+
+## データベースのマイグレーションを行う
+
+```
+cd src
+cd laravel-othello
+php artisan make:migration create_othello_players_table --create=othello_players
+php artisan make:migration add_user_id_othello_players_table --table=othello_players
+```
+
+https://readouble.com/laravel/5.7/ja/migrations.html を参考にマイグレーションファイルの編集を行う．
+
+```
+php artisan migrate
+```
+
+## モデルを作成する
+
+```
+cd src
+cd laravel-othello
+php artisan make:model othello_player
+```
