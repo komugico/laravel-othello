@@ -76,3 +76,13 @@ cd src
 cd laravel-othello
 php artisan make:model othello_player
 ```
+
+## プロバイダを作成する
+
+```
+cd src
+cd laravel-othello
+php artisan make:provider OthelloServiceProvider
+```
+
+その他の作業は https://www.ritolab.com/entry/88 を参照して下さい．
