@@ -31,12 +31,37 @@ class OthelloComponent
         return $game;
     }
 
-    public function find_room($status) {
-        $games = OthelloGame::select()
-                    ->where('othello_games.status', $status)
-                    ->join('othello_players', 'othello_games.player1_id', '=', 'othello_players.id')
-                    ->join('users', 'othello_players.user_id', '=', 'users.id')
-                    ->select('othello_games.id', 'users.name', 'othello_players.rating')
+    public function find_waiting_room() {
+        $games = OthelloGame::from('othello_games as og')
+                    ->select()
+                    ->where('og.status', "WAITING")
+                    ->join('othello_players as op1', 'og.player1_id', '=', 'op1.id')
+                    ->join('users as u1', 'op1.user_id', '=', 'u1.id')
+                    ->select(
+                        'og.id as id',
+                        'u1.name as player1_name',
+                        'op1.rating as player1_rating',
+                    )
+                    ->get();
+        
+        return $games;
+    }
+
+    public function find_ongame_room() {
+        $games = OthelloGame::from('othello_games as og')
+                    ->select()
+                    ->where('og.status', "ONGAME")
+                    ->join('othello_players as op1', 'og.player1_id', '=', 'op1.id')
+                    ->join('othello_players as op2', 'og.player2_id', '=', 'op2.id')
+                    ->join('users as u1', 'op1.user_id', '=', 'u1.id')
+                    ->join('users as u2', 'op2.user_id', '=', 'u2.id')
+                    ->select(
+                        'og.id as id',
+                        'u1.name as player1_name',
+                        'u2.name as player2_name',
+                        'op1.rating as player1_rating',
+                        'op2.rating as player2_rating',
+                    )
                     ->get();
         
         return $games;
