@@ -42,6 +42,7 @@ class OthelloComponent
                         'u1.name as player1_name',
                         'op1.rating as player1_rating',
                     )
+                    ->orderBy('id', 'asc')
                     ->get();
         
         return $games;
@@ -62,6 +63,7 @@ class OthelloComponent
                         'op1.rating as player1_rating',
                         'op2.rating as player2_rating',
                     )
+                    ->orderBy('id', 'asc')
                     ->get();
         
         return $games;
