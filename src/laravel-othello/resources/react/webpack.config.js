@@ -5,6 +5,7 @@ module.exports = {
     entry: {
         share_header: path.resolve(__dirname, "src/share/header.jsx"),
         othello_index: path.resolve(__dirname, "src/othello/index.jsx"),
+        othello_gamelog: path.resolve(__dirname, "src/othello/gamelog.jsx"),
         othello_matching: path.resolve(__dirname, "src/othello/matching.jsx"),
         othello_watching: path.resolve(__dirname, "src/othello/watching.jsx"),
         othello_game: path.resolve(__dirname, "src/othello/game.jsx")

@@ -6,7 +6,7 @@
 @endsection
 
 @section('contents')
-    <div id="matching"></div>
+    <div id="gamelog"></div>
 
     {{-- <div id="player_id" type="hidden" style="display: none">{{$player->id}}</div>
     <div id="player_name" type="hidden" style="display: none">{{$player->name}}</div>
@@ -26,5 +26,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('/js/react/othello_watching.js') }}"></script>
+    <script src="{{ asset('/js/react/othello_gamelog.js') }}"></script>
 @endsection
