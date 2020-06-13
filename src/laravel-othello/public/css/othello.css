@@ -1,0 +1,74 @@
+.board-row:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.square-col {
+    margin-right: -2px;
+    margin-top: -2px;
+}
+
+.square {
+    position: relative;
+    background: #fff;
+    border: 2px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0;
+    padding-top: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+.square:focus {
+    outline: none;
+}
+
+.stone {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.stone-icon {
+    width: auto;
+    height: 24px;
+}
+
+.put-pos {
+    background-color: #FFA500;
+}
+
+@keyframes flip1 {
+    0% { transform:rotateY(0deg);}
+    100%{ transform:rotateY(90deg); }
+}
+
+@keyframes flip2 {
+    0% { transform:rotateY(90deg);}
+    100%{ transform:rotateY(0deg); }
+}
+
+@keyframes color-invert {
+    from { filter: invert(0%); }
+    to {filter: invert(100%); }
+}
+
+.anime-flip {
+    animation: flip1 1s ease-in forwards, color-invert 0s 1s forwards, flip2 1s ease-out 1s forwards;
+}
+
+.anime-flip1 {
+    animation: flip1 0.5s ease-in forwards;
+}
+
+.anime-flip2 {
+    animation: flip2 0.5s ease-out forwards;
+}
