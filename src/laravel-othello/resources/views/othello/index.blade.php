@@ -1,6 +1,6 @@
 @extends('share.base')
 
-@section('title', 'Main')
+@section('title', 'Top')
 
 @section('styles')
 @endsection
