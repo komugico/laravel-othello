@@ -1,54 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button,  Card, Col, Container, Row, Jumbotron } from 'react-bootstrap';
+import { Button, Card, Col, Container, Row, Jumbotron } from 'react-bootstrap';
 
 import { getValueById } from '../share/finder.jsx';
+import { getCsrfTokenTag } from '../share/csrf.jsx';
 
 class Index extends React.Component {
     constructor() {
         super();
-
-        this.interval_time = 100;
-
-        this.state = {
-            
-        }
-
-        this.handleClick_btnViewGameLog = this.handleClick_btnViewGameLog.bind(this);
-        this.handleClick_btnCreateRoom = this.handleClick_btnCreateRoom.bind(this);
-        this.handleClick_btnJoinRoom = this.handleClick_btnJoinRoom.bind(this);
-        this.handleClick_btnWatchRoom = this.handleClick_btnWatchRoom.bind(this);
-    }
-
-    componentDidMount() {
-        this.timer = setInterval(
-            () => this.tick(),
-            this.interval_time
-        );
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.timer);
-    }
-
-    tick() {
-        console.log("ticked");
-    }
-
-    handleClick_btnViewGameLog() {
-        alert("この機能は未実装です．");
-    }
-
-    handleClick_btnCreateRoom() {
-        alert("この機能は未実装です．");
-    }
-
-    handleClick_btnJoinRoom() {
-        alert("この機能は未実装です．");
-    }
-
-    handleClick_btnWatchRoom() {
-        alert("この機能は未実装です．");
     }
 
     render() {
@@ -69,7 +28,10 @@ class Index extends React.Component {
                                         You can build a new game.
                                     </p>
                                     <p>
-                                        <Button variant="primary" onClick={this.handleClick_btnCreateRoom}>Create</Button>
+                                        <form action="/othello/post/createroom" method="post">
+                                            {getCsrfTokenTag()}
+                                            <Button variant="primary" type="submit">Create</Button>
+                                        </form>
                                     </p>
                                 </Jumbotron>
                             </Col>
@@ -81,7 +43,7 @@ class Index extends React.Component {
                                         You can fight with other players.
                                     </p>
                                     <p>
-                                        <Button variant="primary" onClick={this.handleClick_btnJoinRoom}>Join</Button>
+                                        <Button variant="primary" href="/othello/matching">Join</Button>
                                     </p>
                                 </Jumbotron>
                             </Col>
@@ -93,7 +55,7 @@ class Index extends React.Component {
                                         You can watch a existing game.
                                     </p>
                                     <p>
-                                        <Button variant="primary" onClick={this.handleClick_btnWatchRoom}>Watch</Button>
+                                        <Button variant="primary" href="/othello/watching">Watch</Button>
                                     </p>
                                 </Jumbotron>
                             </Col>
@@ -108,7 +70,7 @@ class Index extends React.Component {
                                     Player ID: {this.props.playerId} <br />
                                     Rating: {this.props.playerRating}
                                 </Card.Text>
-                                <Button id="btnViewGameLog" variant="primary" onClick={this.handleClick_btnViewGameLog}>View my game logs</Button>
+                                <Button id="btnViewGameLog" variant="primary" href="/othello/gamelog">View my game logs</Button>
                             </Card.Body>
                         </Card>
                     </Col>

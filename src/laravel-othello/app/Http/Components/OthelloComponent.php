@@ -12,10 +12,15 @@ class OthelloComponent
             $new_player->user_id = $user->id;
             $new_player->save();
         }
-        $player = OthelloPlayer::select()
-                    ->join('users', 'othello_players.user_id', '=', 'users.id')
-                    ->where('users.id', $user->id)
-                    ->select('othello_players.id', 'othello_players.rating', 'users.name')
+
+        $player = OthelloPlayer::from('othello_players as op')
+                    ->select()
+                    ->join('users as u', 'op.user_id', '=', 'u.id')
+                    ->where('u.id', $user->id)
+                    ->select(
+                        'op.id as id',
+                        'op.rating as rating',
+                        'u.name as name')
                     ->get()
                     ->first();
         
@@ -29,6 +34,10 @@ class OthelloComponent
         $game->save();
 
         return $game;
+    }
+
+    public function find_gamelog($player) {
+        return;
     }
 
     public function find_waiting_room() {
