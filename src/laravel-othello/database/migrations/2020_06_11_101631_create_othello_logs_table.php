@@ -18,8 +18,8 @@ class CreateOthelloLogsTable extends Migration
             $table->tinyInteger('turn');
             $table->boolean('is_pass')->default(false);
             $table->boolean('is_surrender')->default(false);
-            $table->tinyInteger('pos_x');
-            $table->tinyInteger('pos_y');
+            $table->tinyInteger('pos_x')->nullable();
+            $table->tinyInteger('pos_y')->nullable();
             $table->char('stones', 64);
             $table->char('flips', 64);
             $table->timestamps();
