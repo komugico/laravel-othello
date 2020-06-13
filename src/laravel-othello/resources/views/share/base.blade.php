@@ -10,6 +10,8 @@
         <title>@yield('title') | Othello</title>
     </head>
     <body>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        
         <div id="header"></div>
         @auth
             <div id="username" type="hidden" style="display: none">{{ Auth::user()->name }}</div>
