@@ -1,4 +1,4 @@
-import { addHeader, getCsrfTokenTag } from './csrf.jsx';
+import { addHeader } from './csrf.jsx';
 import request from 'superagent';
 
 export function httpGET(url, data, func) {
