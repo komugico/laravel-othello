@@ -29,6 +29,7 @@ class Game extends React.Component {
             chats: [["Player 1", "First Comment", "2020/5/12 10:12"], ["Plyaer 2", "Second Comment", "2020/5/12 10:14"], ["Plyaer 1", "Third Comment", "2020/5/12 10:16"]].reverse()
         }
 
+        this.sendMessage = this.sendChat.bind(this);
         this.playbackLog = this.playbackLog.bind(this);
 
         this.getGameInfo();
@@ -112,8 +113,12 @@ class Game extends React.Component {
         });
     }
 
-    getChat() {
+    getChats() {
+        console.log("called getChats");
+    }
 
+    sendChat(comment) {
+        alert(comment);
     }
 
     playbackLog(idx) {
@@ -166,6 +171,7 @@ class Game extends React.Component {
                             <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                                 <ChatPanel
                                     chats={this.state.chats}
+                                    sendChat={this.sendChat}
                                 />
                             </Col>
                         </Row>

@@ -4,6 +4,13 @@ import { Button, Card, Col, Form, Row, Table } from 'react-bootstrap';
 export class ChatPanel extends React.Component {
     constructor() {
         super();
+
+        this.state = {
+            comment: ""
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     createTable(chats) {
@@ -40,6 +47,14 @@ export class ChatPanel extends React.Component {
         );
     }
 
+    handleChange(e) {
+        this.setState({ comment: e.target.value });
+    }
+
+    handleClick() {
+        this.props.sendChat(this.state.comment);
+    }
+
     render() {
         return (
             <Card>
@@ -53,11 +68,11 @@ export class ChatPanel extends React.Component {
                     <Row>
                         <Col xl={12} lg={12} md={12} sm={12} xs={12}>
                             <Form>
-                                <Form.Group controlId="formBasicEmail">
+                                <Form.Group>
                                     <Form.Label>Comment</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter your comment..." />
+                                    <Form.Control type="text" value={this.state.comment} onChange={this.handleChange} />
                                 </Form.Group>
-                                <Button variant="primary" href="#" block>Send</Button>
+                                <Button variant="primary" onClick={this.handleClick} block>Send</Button>
                             </Form>
                         </Col>
                     </Row>
