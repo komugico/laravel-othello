@@ -26,7 +26,7 @@ class Game extends React.Component {
             playbackLogIdx: -1,
             gameId: -1,
             logs: [],
-            chats: [["Player 1", "First Comment", "2020/5/12 10:12"], ["Plyaer 2", "Second Comment", "2020/5/12 10:14"], ["Plyaer 1", "Third Comment", "2020/5/12 10:16"]].reverse()
+            chats: []
         }
 
         this.sendMessage = this.sendChat.bind(this);
@@ -36,18 +36,22 @@ class Game extends React.Component {
     }
 
     componentDidMount() {
-        // this.timer = setInterval(
-        //     () => this.tick(),
-        //     1000
-        // );
+        this.timer = setInterval(
+            () => this.tick(),
+            1000
+        );
     }
 
     componentWillUnmount() {
-        // clearInterval(this.timer);
+        clearInterval(this.timer);
     }
 
     tick() {
+        this.getGameInfo();
         this.getLogs();
+        this.getChats();
+        return;
+
         if (this.state.playbackLogIdx >= 0) {
             this.setState((state, props) => ({
                 turn: state.playbackLogIdx,
@@ -66,6 +70,8 @@ class Game extends React.Component {
     }
 
     getGameInfo() {
+        console.log("called getGameInfo");
+        
         httpGET(location.href + "/get/gameinfo", {}, (err, res) => {
             if (res.body.success) {
                 let me = OBSERVER;
@@ -90,6 +96,9 @@ class Game extends React.Component {
     }
 
     getLogs() {
+        console.log("called getLogs");
+        return;
+
         httpGET(location.href + "/get/logs/", {}, (err, res) => {
             if (res.body.success) {
                 let nextPlayer = this.state.firstPlayer;
