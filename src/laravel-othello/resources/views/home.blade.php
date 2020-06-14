@@ -1,23 +1,14 @@
-@extends('layouts.app')
+@extends('share.base')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+@section('title', 'Home')
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+@section('styles')
+@endsection
 
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@section('contents')
+    <div id="home"></div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('/js/react/home_index.js') }}"></script>
 @endsection

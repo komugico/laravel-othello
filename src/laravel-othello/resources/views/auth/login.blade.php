@@ -1,6 +1,12 @@
-@extends('layouts.app')
+@extends('share.base')
 
-@section('content')
+@section('title', 'Login')
+
+@section('styles')
+@endsection
+
+@section('contents')
+<br />
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
