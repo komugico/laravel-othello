@@ -18,6 +18,8 @@ export class OthelloPanel extends React.Component {
         }
 
         this.putStone = this.putStone.bind(this);
+        this.pass = this.pass.bind(this);
+        this.surrender = this.surrender.bind(this);
     }
 
     componentDidMount() {
@@ -48,6 +50,9 @@ export class OthelloPanel extends React.Component {
     }
 
     putStone(x, y) {
+        alert(x + ", " + y);
+        return;
+        
         if (this.props.logs.length == this.props.turn) {
             if (this.props.nextPlayer == this.props.me) {
                 httpPOST("post/putstone/", {
@@ -72,11 +77,11 @@ export class OthelloPanel extends React.Component {
     }
 
     pass() {
-
+        alert("pass");
     }
 
     surrender() {
-
+        alert("surrender");
     }
 
     render() {
