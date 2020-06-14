@@ -8,9 +8,10 @@
 @section('contents')
     <div id="gamelog"></div>
 
-    {{-- <div id="player_id" type="hidden" style="display: none">{{$player->id}}</div>
+    <div id="player_id" type="hidden" style="display: none">{{$player->id}}</div>
     <div id="player_name" type="hidden" style="display: none">{{$player->name}}</div>
     <div id="player_rating" type="hidden" style="display: none">{{$player->rating}}</div>
+    
     @foreach ($games as $game)
     <div name="game" type="hidden", style="display: none">
         <div name="game_id" type="hidden", style="display: none">{{$game->id}}</div>
@@ -22,7 +23,7 @@
         <div name="first_player" type="hidden", style="display: none">{{$game->first_player}}</div>
         <div name="winner" type="hidden", style="display: none">{{$game->winner}}</div>
     </div>
-    @endforeach --}}
+    @endforeach
 @endsection
 
 @section('scripts')

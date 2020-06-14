@@ -15,7 +15,9 @@ class AddUserIdOthelloChatsTable extends Migration
     {
         Schema::table('othello_chats', function (Blueprint $table) {
             $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('game_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('game_id')->references('id')->on('othello_games')->onDelete('set null');
         });
     }
 
@@ -28,6 +30,7 @@ class AddUserIdOthelloChatsTable extends Migration
     {
         Schema::table('othello_chats', function (Blueprint $table) {
             $table->dropForeign('othello_chats_user_id_foreign');
+            $table->dropForeign('othello_chats_geme_id_foreign');
         });
     }
 }

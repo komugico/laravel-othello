@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 use App\OthelloPlayer;
 use App\OthelloGame;
@@ -26,7 +27,31 @@ class OthelloController extends Controller
     }
 
     public function gamelog() {
-        return view("othello.gamelog");
+        $user = Auth::user();
+        $player = OthelloFacade::get_player($user);
+        // FIXME:連想配列ではなくeloquentのCollectionsを使う必要がある
+        if (0) {
+            $games = [
+                [
+                "id" => 1,
+                "status" => "ONGAME",
+                "player1_name" => "decant",
+                "player1_rating" => "530000",
+                "player2_name" => "komugico",
+                "player2_rating" => "5",
+                "first_player" => "player2",
+                "winner" => "player1"
+                ]
+            ];
+        }
+        else {
+            $games = OthelloFacade::find_gamelog($player);
+        }
+
+        return view("othello.gamelog",[
+            "player" => $player,
+            "games" =>$games
+        ]);
     }
 
     public function matching() {
