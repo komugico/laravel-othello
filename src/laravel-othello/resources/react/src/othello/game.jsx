@@ -31,7 +31,7 @@ class Game extends React.Component {
 
         this.playbackLog = this.playbackLog.bind(this);
 
-        // this.getGameStatus();
+        this.getGameInfo();
     }
 
     componentDidMount() {
@@ -46,7 +46,7 @@ class Game extends React.Component {
     }
 
     tick() {
-        this.getLog();
+        this.getLogs();
         if (this.state.playbackLogIdx >= 0) {
             this.setState((state, props) => ({
                 turn: state.playbackLogIdx,
@@ -64,36 +64,36 @@ class Game extends React.Component {
         }
     }
 
-    getGameStatus() {
-        httpGET("get/gamestatus", {}, (err, res) => {
-            if (res.body["success"]) {
+    getGameInfo() {
+        httpGET(location.href + "/get/gameinfo", {}, (err, res) => {
+            if (res.body.success) {
                 let me = OBSERVER;
-                if (this.props.username == res.body["player1"].name) {
+                if (this.props.playerName == res.body.info.player1.name) {
                     me = PLAYER_1;
                 }
-                else if (this.props.username == res.body["player2"].name) {
+                else if (this.props.playerName == res.body.info.player2.name) {
                     me = PLAYER_2;
                 }
                 this.setState((state, props) => ({
-                    player1: res.body["player1"],
-                    player2: res.body["player2"],
-                    gameId: res.body["gameId"],
-                    firstPlayer: res.body["firstPlayer"],
+                    player1: res.body.info.player1,
+                    player2: res.body.info.player2,
+                    gameId: res.body.info.game.id,
+                    firstPlayer: res.body.info.first_player,
                     me: me
                 }));
             }
             else {
-                alert(res.body["message"]);
+                alert(res.body.message);
             }
         });
     }
 
-    getLog() {
-        httpGET("get/logs/", {}, (err, res) => {
-            if (res.body["success"]) {
+    getLogs() {
+        httpGET(location.href + "/get/logs/", {}, (err, res) => {
+            if (res.body.success) {
                 let nextPlayer = this.state.firstPlayer;
-                if (res.body["logs"].length > 0) {
-                    let latest_username = res.body["logs"].slice(-1)[0].player_username;
+                if (res.body.logs.length > 0) {
+                    let latest_username = res.body.logs.slice(-1)[0].player.name;
                     if (latest_username == this.state.player1.name) {
                         nextPlayer = PLAYER_2;
                     }
@@ -102,12 +102,12 @@ class Game extends React.Component {
                     }
                 }
                 this.setState((state, props) => ({
-                    logs: res.body["logs"],
+                    logs: res.body.logs,
                     nextPlayer: nextPlayer
                 }));
             }
             else {
-                alert(res.body["message"]);
+                alert(res.body.message);
             }
         });
     }

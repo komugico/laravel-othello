@@ -13,20 +13,20 @@ class OthelloController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware("auth");
     }
 
     public function index() {
         $user = Auth::user();
         $player = OthelloFacade::get_player($user);
 
-        return view('othello.index', [
+        return view("othello.index", [
             "player" => $player
         ]);
     }
 
     public function gamelog() {
-        return view('othello.gamelog');
+        return view("othello.gamelog");
     }
 
     public function matching() {
@@ -34,7 +34,7 @@ class OthelloController extends Controller
         $player = OthelloFacade::get_player($user);
         $games = OthelloFacade::find_waiting_room();
 
-        return view('othello.matching', [
+        return view("othello.matching", [
             "player" => $player,
             "games" => $games
         ]);
@@ -45,7 +45,7 @@ class OthelloController extends Controller
         $player = OthelloFacade::get_player($user);
         $games = OthelloFacade::find_ongame_room();
 
-        return view('othello.watching', [
+        return view("othello.watching", [
             "player" => $player,
             "games" => $games
         ]);
@@ -55,7 +55,7 @@ class OthelloController extends Controller
         $user = Auth::user();
         $player = OthelloFacade::get_player($user);
 
-        return view('othello.game', [
+        return view("othello.game", [
             "player" => $player
         ]);
     }
@@ -65,7 +65,7 @@ class OthelloController extends Controller
         $player = OthelloFacade::get_player($user);
         $game = OthelloFacade::create_room($player);
 
-        return redirect('/othello/game/'.$game->id);
+        return redirect("/othello/game/".$game->id);
     }
 
     public function postJoinRoom($game_id) {
@@ -108,8 +108,13 @@ class OthelloController extends Controller
         return;
     }
 
-    public function getGameStatus($game_id) {
-        return;
+    public function getGameInfo($game_id) {
+        $info = OthelloFacade::get_game_info($game_id);
+
+        return response()->json([
+            "success" => true,
+            "info" => $info
+        ]);
     }
 
     public function getLogs($game_id) {

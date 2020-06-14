@@ -23,7 +23,7 @@ Route::get('/othello/watching', 'OthelloController@watching')->name('othello.wat
 Route::get('/othello/game/{game_id}', 'OthelloController@game')->name('othello.game');
 
 Route::post('/othello/game/{game_id}/get/chatlogs', 'OthelloController@getChatLogs')->name('othello.chatlogs');
-Route::get('/othello/game/{game_id}/get/gamestatus', 'OthelloController@getGameStatus')->name('othello.gamestatus');
+Route::get('/othello/game/{game_id}/get/gameinfo', 'OthelloController@getGameInfo')->name('othello.gameinfo');
 Route::get('/othello/game/{game_id}/get/logs', 'OthelloController@getLogs')->name('othello.logs');
 
 Route::post('/othello/post/createroom', 'OthelloController@postCreateRoom')->name('othello.createroom');
